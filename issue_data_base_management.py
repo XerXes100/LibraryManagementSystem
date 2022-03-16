@@ -5,8 +5,13 @@ print("Enter BookId")
 book_id = input()
 
 print("											   ")
-print(" Enter Enrollment Number")
+print("Enter Enrollment Number")
 enrollment_number = int(input())
+print("											   ")
+
+print("											   ")
+print("Enter Student Name")
+student_name = input()
 print("											   ")
 
 
@@ -21,25 +26,29 @@ def issue_book(book_content):
 	print("Enter Return date")
 	return_date = str(input())
 
-	book_content = book_content[:len(book_content)-1]
-	book_content.append("NO")
+	print(book_content)
+	# book_content = book_content[:len(book_content)-1]
+
+	# TODO: Check if available is needed
+	# book_content.append("NO")
+	book_content[2] = student_name
 	book_content[3] = "YES"
-	book_content.append(issued_date)
-	book_content.append(return_date)	
-	book_content.append(str(enrollment_number))
-	book_content.append("\n")
-	book = "  ".join(book_content)
+	book_content[4] = issued_date
+	book_content[5] = return_date
+	book_content[7] = str(enrollment_number)
+
+	book = ",".join(book_content)
 	return book
 
-
-with open('books.txt', 'r') as books_file:
+with open('books.csv', 'r') as books_file:
 	books = books_file.readlines()
 
-with open('books.txt', 'w') as books_file:
+with open('books.csv', 'w') as books_file:
 	for book in books:
-		book_content = book.split("  ")
-
-		if book_content[0] == book_id:
+		book_content = book.split(",")
+		print(book_content)
+		print(book_content[6].strip())
+		if book_content[6].strip() == book_id:
 			new_book = issue_book(book_content)
 			books_file.write(new_book)
 			continue

@@ -23,12 +23,24 @@ then
 
 	echo "                                             "
 	echo " *****************  Books *******************"
-	grep  $search_query books.txt
+	grep "$search_query" books.csv 
 	echo "                                             "
 elif [ $operation_number -eq 2 ]
 then
 	echo "                                             "
 	echo " ************  Books Issued by $student_id ***************"
-	grep  $student_id books.txt
+	# grep -q $student_id books.csv | while read -r col1 col2 col3 col4 col5 col6 col7 ; do
+	# 	# echo "$col1"
+	# 	echo "Book Name: $col2"
+	# 	# echo "Student Name:$col3"
+	# 	# echo "Issue date: $col5"
+	# 	# echo "Return date: $col6"
+	# 	# echo "\n"
+	# done
+	grep $student_id books.csv | while read -r book_name student_name; do
+		echo "$book_name"
+		echo "$student_name"
+	done
 	echo "                                             "
 fi
+
