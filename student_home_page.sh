@@ -37,10 +37,11 @@ then
 	# 	# echo "Return date: $col6"
 	# 	# echo "\n"
 	# done
-	grep $student_id books.csv | while read -r book_name student_name; do
-		echo "$book_name"
-		echo "$student_name"
-	done
+	# grep $student_id books.csv | while read -r book_name student_name; do
+	# 	echo "$book_name"
+	# 	echo "$student_name"
+	# done
+	grep $student_id books.csv
 	echo "                                             "
 fi
 
